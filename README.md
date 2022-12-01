@@ -14,3 +14,12 @@
 
 - npm init vue@latest
 - npm install
+
+## ROUTING LOGIC
+
+``` JavaScript
+//Dashboard TWO PARTS: ONE PANEL ON THE LEFT, ANOTHER CONTENT ON THE RIGHT
+//CLICKING PANEL CONTENT TO SWITCH RIGHT HAND SIDE CONTENT 
+//routing to Layout.vue
+//Layout has children of content/page switching
+```
