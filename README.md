@@ -1,29 +1,16 @@
-# tunnels-vue3
+# VUE3 BASED TUNNELS MANAGEMENT SYSTEM
 
-This template should help get you started developing with Vue 3 in Vite.
+## MODULE USED IN THIS PROJECT
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- VUE-ROUTER4.X: npm install vue-router@4
+- AXIOS: npm install axios --save
+- Pinia (replace VUEX): npm install pinia --save
+- echarts: npm install echarts --save
+- vue-i18n(language switch): npm install --save vue-i18n@next
+- element-plus: npm install element-plus --save
+- On-demand Import: npm install -D unplugin-vue-components unplugin-auto-import
 
 ## Project Setup
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+- npm init vue@latest
+- npm install
