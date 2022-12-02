@@ -23,8 +23,11 @@
 import { reactive } from 'vue';
 import api from '@/api/index.js';
 import { useLoginStore } from '@/stores/loginStore.js'
+import { useRouter } from 'vue-router';
+
 
 const loginStore = useLoginStore()
+const router = useRouter()
 const user = reactive({ //user input listening
     username:'',
     password:''
@@ -39,11 +42,13 @@ const loginSubmit = () =>{
     }).then(res=>{
         //console.log(res.data)
         if(res.data.status === 200){
+            //login user and store session info
             loginStore.token = res.data.token
             loginStore.username = res.data.username
             loginStore.permission = res.data.permission
+            router.push('/')
         }else{
-            
+            ElMessage.error(res.data.message)
         }
     })
 }

@@ -8,5 +8,14 @@ export const useLoginStore = defineStore('login',{
             username:''
 
         }
+    },
+    persist:{
+        enabled:true,
+        strategies:[
+            {
+                key:'login', //apply state to localStorage
+                storage:localStorage
+            }
+        ]
     }
 })
