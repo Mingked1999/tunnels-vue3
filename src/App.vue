@@ -11,4 +11,7 @@
 body,html,#app{
   height: 100%;
 }
+.el-menu{
+  border-right: 0; /* remove element menu right border */
+}
 </style>
