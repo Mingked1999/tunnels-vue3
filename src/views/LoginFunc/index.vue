@@ -20,16 +20,33 @@
    </div>
 </template>
 <script setup>
-//script setup ????
 import { reactive } from 'vue';
-const user = reactive({
+import api from '@/api/index.js';
+import { useLoginStore } from '@/stores/loginStore.js'
+
+const loginStore = useLoginStore()
+const user = reactive({ //user input listening
     username:'',
     password:''
 })
+/**
+ * login verification
+ */
 const loginSubmit = () =>{
-    //console.log(user)
+    api.loginUser({
+        username:user.username,
+        password:user.password
+    }).then(res=>{
+        //console.log(res.data)
+        if(res.data.status === 200){
+            loginStore.token = res.data.token
+            loginStore.username = res.data.username
+            loginStore.permission = res.data.permission
+        }else{
+            
+        }
+    })
 }
-
 </script>
 <style scoped>
 .loginBase{
