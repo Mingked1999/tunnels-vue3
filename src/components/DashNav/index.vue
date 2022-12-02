@@ -2,7 +2,13 @@
     <div class="nav-container">
         <div class="toggle-menu">
             <div class="toggle-menu-toggle">
-                <el-icon class="icon"><Expand/></el-icon>
+                <!--if true display, otherwise display another one-->
+                <el-icon v-if="sliderStore.isCollapse" class="icon" @click="openSlider(false)" >
+                    <Expand/>
+                </el-icon>
+                <el-icon v-else class="icon" @click="closeSlider(true)">
+                    <Fold/>
+                </el-icon>
             </div>
         </div>
         <div class="toggle-menu-breadcrumb">
@@ -35,8 +41,10 @@
 </template>
 <script setup>
 import { useLoginStore } from '@/stores/loginStore.js'
+import { useSliderStore } from '@/stores/sliderControl.js' //store collapse condition in pinia/vuex
 import { useRouter } from 'vue-router';
 const loginStore = useLoginStore();
+const sliderStore = useSliderStore();
 const router = useRouter();
 /**
  * clear local storage so that logout user
@@ -46,6 +54,16 @@ const logout = () =>{
     loginStore.permission = ""
     loginStore.username = ""
     router.push('/login')
+}
+/**
+ * @param {false} flag 
+ * according to pinia slider value to collapse or open the slider
+ */
+const closeSlider = (flag) =>{
+    sliderStore.isCollapse = flag //false passed in
+}
+const openSlider = (flag) =>{
+    sliderStore.isCollapse = flag
 }
 </script>
 

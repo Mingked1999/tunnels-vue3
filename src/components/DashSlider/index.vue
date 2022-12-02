@@ -3,27 +3,35 @@
         <el-menu 
         background-color="#222222" text-color="#F9F9F9" 
         active-text-color="#D4ADCF" :default-active="active" 
+        :collapse="sliderStore.isCollapse"
         class="slider-vertical" router>
             <div class="logo">TUNNELS</div>
             <el-menu-item index="/">
+                <el-icon><HomeFilled /></el-icon>
                 <span>HOME</span>
             </el-menu-item>
             <el-menu-item index="/project">
+                <el-icon><DocumentCopy /></el-icon>
                 <span>Project Intro</span>
             </el-menu-item>
             <el-menu-item index="/tunnel">
+                <el-icon><DataLine /></el-icon>
                 <span>Tunnel Design</span>
             </el-menu-item>
             <el-menu-item index="/work">
+                <el-icon><Guide /></el-icon>
                 <span>Work Supervision</span>
             </el-menu-item>
             <el-menu-item index="/quality">
+                <el-icon><Monitor /></el-icon>
                 <span>Quality Control</span>
             </el-menu-item>
             <el-menu-item index="/geoprocast">
+                <el-icon><Location /></el-icon>
                 <span>Geologic Procast</span>
             </el-menu-item>
             <el-menu-item index="/system">
+                <el-icon><Histogram /></el-icon>
                 <span>System Details</span>
             </el-menu-item>
         </el-menu>
@@ -31,7 +39,11 @@
 </template>
 <script setup>
 import {ref} from 'vue';
-const active = ref('/')
+import { useSliderStore } from '@/stores/sliderControl.js'
+
+const active = ref('/'); //slider keywords highlight as the user is switching between tabs
+const sliderStore = useSliderStore();
+
 </script>
 <style scoped>
 .slider-vertical{

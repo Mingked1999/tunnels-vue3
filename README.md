@@ -1,6 +1,7 @@
 # VUE3 BASED TUNNELS MANAGEMENT SYSTEM
 
-> npm run dev
+> frontend start: npm run dev
+> backend start -> cd ./server: node index.js
 
 ## MODULE USED IN THIS PROJECT Frontend
 
