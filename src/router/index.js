@@ -3,6 +3,7 @@ import Layout from '../views/Layout.vue'
 import HomeView from '../views/HomeView/index.vue'
 import Login from '../views/LoginFunc/index.vue'
 import { useLoginStore } from '../stores/loginStore'
+import { useSliderStore } from '@/stores/sliderControl.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +18,8 @@ const router = createRouter({
           name:'home',
           component:HomeView,
           meta:{
-            requiresAuth:true
+            requiresAuth:true,
+            key:'HOME'
           }
         },
         {
@@ -25,7 +27,8 @@ const router = createRouter({
           name:'project',
           component:() => import('../views/ProjectInfo/index.vue'), //import on-demand
           meta:{
-            requiresAuth:true
+            requiresAuth:true,
+            key:'PROJECT INTRO',
           }
         },
         {
@@ -33,7 +36,8 @@ const router = createRouter({
           name:'tunnel',
           component:() => import('../views/TunneInfo/index.vue'), //import on-demand
           meta:{
-            requiresAuth:true
+            requiresAuth:true,
+            key:'TUNNEL DESIGN',
           }
         },
         {
@@ -41,7 +45,8 @@ const router = createRouter({
           name:'work',
           component:() => import('../views/WorkSupervise/index.vue'), //import on-demand
           meta:{
-            requiresAuth:true
+            requiresAuth:true,
+            key:'WORK SUPERVISION',
           }
         },
         {
@@ -49,7 +54,8 @@ const router = createRouter({
           name:'quality',
           component:() => import('../views/QualityControl/index.vue'), //import on-demand
           meta:{
-            requiresAuth:true
+            requiresAuth:true,
+            key:'QALITY CONRTROL',
           }
         },
         {
@@ -57,7 +63,8 @@ const router = createRouter({
           name:'geoprocast',
           component:() => import('../views/GeoProcast/index.vue'), //import on-demand
           meta:{
-            requiresAuth:true
+            requiresAuth:true,
+            key:'GEOLOGICAL PROCAST',
           }
         },
         {
@@ -65,7 +72,8 @@ const router = createRouter({
           name:'system',
           component:() => import('../views/SystemReport/index.vue'), //import on-demand
           meta:{
-            requiresAuth:true
+            requiresAuth:true,
+            key:'SYSTEM DETAILS',
           }
         },
         {
@@ -103,4 +111,13 @@ router.beforeEach((to,from,next)=>{
     next()
   }
 })
+router.afterEach((to,from)=>{
+  localStorage.setItem('sliderKey',to.path) //set a localstorage key to store the current path
+  if(to.meta.key){
+    const sliderStore = useSliderStore();
+    sliderStore.breadCrumb = to.meta.key
+  }
+})
+
+
 export default router

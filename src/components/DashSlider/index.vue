@@ -1,11 +1,13 @@
 <template>
-    <div class="panel-base">
+    <div class="panel-base" :style="{width:sliderStore.isCollapse?'14px':'240px'}">
         <el-menu 
         background-color="#222222" text-color="#F9F9F9" 
         active-text-color="#D4ADCF" :default-active="active" 
         :collapse="sliderStore.isCollapse"
         class="slider-vertical" router>
-            <div class="logo">TUNNELS</div>
+            <div class="logo">
+                {{sliderStore.isCollapse?'DMK':'TUNNELS'}}
+            </div>
             <el-menu-item index="/">
                 <el-icon><HomeFilled /></el-icon>
                 <span>HOME</span>
@@ -43,7 +45,10 @@ import { useSliderStore } from '@/stores/sliderControl.js'
 
 const active = ref('/'); //slider keywords highlight as the user is switching between tabs
 const sliderStore = useSliderStore();
-
+//when user refresh webpage, routing path may lost -> breadcrumb and slider highlight not matched
+if(localStorage.getItem('sliderKey')){
+    active.value = localStorage.getItem('sliderKey')
+}
 </script>
 <style scoped>
 .slider-vertical{
@@ -51,9 +56,8 @@ const sliderStore = useSliderStore();
     left: 0;
     top: 0;
     bottom: 0;
-    width: auto;
-    padding-right: 3rem;
     border-radius: 0 1rem 1rem 0;
+    transition: .3s ease-in;
 }
 .logo{
     width:100%;

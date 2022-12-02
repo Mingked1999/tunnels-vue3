@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-container">
+    <div class="nav-container" >
         <div class="toggle-menu">
             <div class="toggle-menu-toggle">
                 <!--if true display, otherwise display another one-->
@@ -14,7 +14,7 @@
         <div class="toggle-menu-breadcrumb">
             <el-breadcrumb>
                 <el-breadcrumb-item>Present</el-breadcrumb-item>
-                <el-breadcrumb-item>Home</el-breadcrumb-item>
+                <el-breadcrumb-item>{{sliderStore.breadCrumb}}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="user">
@@ -69,14 +69,13 @@ const openSlider = (flag) =>{
 
 <style scoped>
 .nav-container{
-    width:100%;
+    height: auto;
     height: 8vh;
     background-color: #ffffff;
-    padding-left: 12vw;
+    padding-left: 3vw;
 }
 .toggle-menu{
     padding-top: .7rem;
-    padding-left: 7rem;
 }
 .icon{
     font-size: 2rem;
