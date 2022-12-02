@@ -37,3 +37,5 @@ const something = () =>{
 //routing to Layout.vue
 //Layout has children of content/page switching
 ```
+
+[Baidu](https://www.baidu.com/)
