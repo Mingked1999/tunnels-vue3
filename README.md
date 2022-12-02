@@ -29,6 +29,9 @@
 ## ROUTING LOGIC
 
 ``` JavaScript
+const something = () =>{
+    console.log("Hello World")
+}
 //Dashboard TWO PARTS: ONE PANEL ON THE LEFT, ANOTHER CONTENT ON THE RIGHT
 //CLICKING PANEL CONTENT TO SWITCH RIGHT HAND SIDE CONTENT 
 //routing to Layout.vue
