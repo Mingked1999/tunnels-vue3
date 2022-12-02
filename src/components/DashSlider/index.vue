@@ -1,10 +1,10 @@
 <template>
     <div class="panel-base">
         <el-menu 
-        background-color="#7785AC" text-color="#A5E6BA" 
+        background-color="#222222" text-color="#F9F9F9" 
         active-text-color="#D4ADCF" :default-active="active" 
         class="slider-vertical" router>
-            <div class="logo">Tunnel Project</div>
+            <div class="logo">TUNNELS</div>
             <el-menu-item index="/">
                 <span>HOME</span>
             </el-menu-item>
@@ -39,15 +39,18 @@ const active = ref('/')
     left: 0;
     top: 0;
     bottom: 0;
-    width: 20vw;
+    width: auto;
+    padding-right: 3rem;
+    border-radius: 0 1rem 1rem 0;
 }
 .logo{
     width:100%;
-    height: 10vh;
-    background-color: #344D67;
-    text-align: center;
-    font-size: 1.8rem;
-    color:#A5E6BA;
+    height: 8vh;
+    text-align: left;
+    font-size: 1rem;
+    color:#F9F9F9;
     line-height: 4.5rem;
+    padding: .6rem;
+    
 }
 </style>

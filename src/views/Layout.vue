@@ -2,17 +2,20 @@
     <div class="tunnel-layout">
         <DashSlider/>
         <div class="dash-content">
-            <router-view></router-view>
+            <DashNav/>
+            <div class="views">
+                <router-view></router-view>
+            </div>
         </div>
     </div>
    
 </template>
 <script setup>
-//import DashSlider from '@/components/DashSlider/index.vue'
+
 </script>
 <style scoped>
-.dash-content{
-    margin-left: 20vw;
-    padding: 1rem;
+.views{
+    padding-left: 15vw;
+    height: auto;
 }
 </style>
