@@ -9,10 +9,13 @@
             <h3 class="title">WELCOME TO TUNNEL MANAGEMENT SYSTEM</h3>
         </div>
         <el-form-item prop="username">
-            <el-input v-model="user.username" placeholder="username or email" name="username" type="text"></el-input>
+            <!--:prefix-icon="icon-name"-->
+            <el-input v-model="user.username" :prefix-icon="User"
+                placeholder="username or email" name="username" type="text"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-input v-model="user.password" placeholder="place input password" name="password" type="password"></el-input>
+            <el-input v-model="user.password" :prefix-icon="Lock"
+                placeholder="place input password" name="password" type="password"></el-input>
         </el-form-item>
         <el-button style="width: 100%;margin-bottom: 30px;" type="primary" @click.prevent="loginSubmit">Login</el-button>
         <!--@click.prevent: prevent default execute-->
@@ -24,7 +27,7 @@ import { reactive } from 'vue';
 import api from '@/api/index.js';
 import { useLoginStore } from '@/stores/loginStore.js'
 import { useRouter } from 'vue-router';
-
+import { User,Lock } from '@element-plus/icons-vue'
 
 const loginStore = useLoginStore()
 const router = useRouter()

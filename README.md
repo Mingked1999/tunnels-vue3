@@ -7,10 +7,11 @@
 - VUE-ROUTER4.X: npm install vue-router@4
 - AXIOS: npm install axios --save
 - Pinia (replace VUEX): npm install pinia --save
-- npm install pinia-plugin-persist --save
+- Pinia Persist: npm install pinia-plugin-persist --save
 - echarts: npm install echarts --save
 - vue-i18n(language switch): npm install --save vue-i18n@next
 - element-plus: npm install element-plus --save
+- element-plus icon: npm install @element-plus/icons-vue
 - On-demand Import: npm install -D unplugin-vue-components unplugin-auto-import
 
 ## MODULE USED IN THIS PROJECT server
@@ -29,13 +30,8 @@
 ## ROUTING LOGIC
 
 ``` JavaScript
-const something = () =>{
-    console.log("Hello World")
-}
 //Dashboard TWO PARTS: ONE PANEL ON THE LEFT, ANOTHER CONTENT ON THE RIGHT
 //CLICKING PANEL CONTENT TO SWITCH RIGHT HAND SIDE CONTENT 
 //routing to Layout.vue
 //Layout has children of content/page switching
 ```
-
-[Baidu](https://www.baidu.com/)
