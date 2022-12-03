@@ -41,4 +41,22 @@ router.get('/lines',(req,res)=>{
         result:lines
     })
 })
+router.get('/project/all',(req,res)=>{
+    //query and pagination
+    var page = url.parse(req.url,true).query.page || 1; //????
+    const sql = 'select * from project order by id desc limit 15 offset ' + (page-1) * 15;
+    dbConn(sql,null,result=>{
+        if(result.length > 0){
+            res.send({
+                status:200,
+                result
+            })
+        }else{
+            res.send({
+                status:500,
+                message:'no records'
+            })
+        }
+    })
+})
 module.exports = router;

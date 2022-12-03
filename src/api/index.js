@@ -7,7 +7,12 @@ const api = {
     },
     getLines(){
         return axios.get(base.baseRul + base.lines)
-    }
+    },
+    getProjects(params){
+        return axios.get(base.baseRul + base.projectList,{
+            params
+        })
+    },
 }
 
 export default api

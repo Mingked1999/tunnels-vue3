@@ -2,7 +2,7 @@
     <div class="tunnel-layout">
         <Setting @onLogoSwitch="getLogoToggle"/>
         <DashSlider :logoToggle="logoToggle"/>
-        <div class="dash-content" :style="{marginLeft:sliderStore.isCollapse?'2.4vw':'12.7vw'}">
+        <div class="dash-content" :style="{marginLeft:sliderStore.isCollapse?'3.7vw':'12.7vw'}">
             <DashNav/>
             <div class="views">
                 <router-view></router-view>
