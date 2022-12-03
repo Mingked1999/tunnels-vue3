@@ -73,8 +73,26 @@ const router = createRouter({
           component:()=>import('../views/Profile/index.vue'),
           meta:{
             requiresAuth:true
-          }
+          },
         },
+        {
+          name:'plan',
+          path:'/plan',
+          component: ()=>import('../views/WorkSupervise/PlanTest/index.vue'),
+          meta:{
+              requiresAuth:true,
+              key:'PLAN TEST',
+            },
+        },
+        {
+            name:'section',
+            path:'/section',
+            component: ()=>import('../views/WorkSupervise/SectionTest/index.vue'),
+            meta:{
+                requiresAuth:true,
+                key:'SECTION TEST',
+              },
+        }
       ]
     },
     {

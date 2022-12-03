@@ -5,7 +5,7 @@
         active-text-color="#D4ADCF" :default-active="active" 
         :collapse="sliderStore.isCollapse"
         class="slider-vertical" router>
-            <div class="logo">
+            <div class="logo" v-show="logoToggle">
                 {{sliderStore.isCollapse?'DMK':'TUNNELS'}}
             </div>
             <el-menu-item index="/">
@@ -20,10 +20,20 @@
                 <el-icon><DataLine /></el-icon>
                 <span>Tunnel Design</span>
             </el-menu-item>
-            <el-menu-item index="/work" v-if="loginStore.permission=='admin'?true:false">
-                <el-icon><Guide /></el-icon>
-                <span>Work Supervision </span>
-            </el-menu-item>
+           
+            <el-sub-menu index="/work" v-if="loginStore.permission=='admin'?true:false">
+                <template #title>
+                    <el-icon><Guide /></el-icon>
+                    <span>Work Supervision </span>
+                </template>
+                <el-menu-item index="/plan">
+                    <span>Plan Test</span>
+                </el-menu-item>
+                <el-menu-item index="/section">
+                    <span>Section Test</span>
+                </el-menu-item>
+            </el-sub-menu>
+
             <el-menu-item index="/quality">
                 <el-icon><Monitor /></el-icon>
                 <span>Quality Control</span>
@@ -46,6 +56,12 @@ import { useLoginStore } from '@/stores/loginStore.js'
 const active = ref('/'); //slider keywords highlight as the user is switching between tabs
 const sliderStore = useSliderStore();
 const loginStore = useLoginStore();
+const props = defineProps({
+    logoToggle:{
+        type:Boolean,
+        default:false
+    }
+})
 //when user refresh webpage, routing path may lost -> breadcrumb and slider highlight not matched
 if(localStorage.getItem('sliderKey')){
     active.value = localStorage.getItem('sliderKey')

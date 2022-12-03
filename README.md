@@ -1,7 +1,7 @@
 # VUE3 BASED TUNNELS MANAGEMENT SYSTEM
 
 > frontend start: npm run dev
-> backend start -> cd ./server: node index.js
+> backend start -> cd ./server: node/nodemon index.js
 
 ## MODULE USED IN THIS PROJECT Frontend
 
@@ -17,11 +17,12 @@
 
 ## MODULE USED IN THIS PROJECT server
 
-- localhost server: npm install --save express
-- npm install body-parser //POST requests
-- cors: npm install --save cors
+- localhost server: npm install --save express //network module
+- npm install body-parser //make POST requests query-string
+- cors: npm install --save cors //solve proxy problem in backend
 - npm install --save mysql
-- npm install --save jsonwebtoken
+- npm install --save jsonwebtoken //token generator
+- npm install -g nodemon //node change detection tool
 
 ## Project Setup
 

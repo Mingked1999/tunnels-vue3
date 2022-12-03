@@ -49,6 +49,7 @@ import { useRouter } from 'vue-router';
 const loginStore = useLoginStore();
 const sliderStore = useSliderStore();
 const router = useRouter();
+
 /**
  * clear local storage so that logout user
  */
