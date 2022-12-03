@@ -41,15 +41,6 @@ const router = createRouter({
           }
         },
         {
-          path:'/work',
-          name:'work',
-          component:() => import('../views/WorkSupervise/index.vue'), //import on-demand
-          meta:{
-            requiresAuth:true,
-            key:'WORK SUPERVISION',
-          }
-        },
-        {
           path:'/quality',
           name:'quality',
           component:() => import('../views/QualityControl/index.vue'), //import on-demand
@@ -90,6 +81,11 @@ const router = createRouter({
       path:'/login',
       name:'login',
       component:Login
+    },
+    {
+      path:'/:pathMatch(.*)*',
+      name:'notfound',
+      component:()=>import('../views/NotFound/index.vue')
     },
 
   ]

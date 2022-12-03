@@ -20,9 +20,9 @@
                 <el-icon><DataLine /></el-icon>
                 <span>Tunnel Design</span>
             </el-menu-item>
-            <el-menu-item index="/work">
+            <el-menu-item index="/work" v-if="loginStore.permission=='admin'?true:false">
                 <el-icon><Guide /></el-icon>
-                <span>Work Supervision</span>
+                <span>Work Supervision </span>
             </el-menu-item>
             <el-menu-item index="/quality">
                 <el-icon><Monitor /></el-icon>
@@ -42,9 +42,10 @@
 <script setup>
 import {ref} from 'vue';
 import { useSliderStore } from '@/stores/sliderControl.js'
-
+import { useLoginStore } from '@/stores/loginStore.js'
 const active = ref('/'); //slider keywords highlight as the user is switching between tabs
 const sliderStore = useSliderStore();
+const loginStore = useLoginStore();
 //when user refresh webpage, routing path may lost -> breadcrumb and slider highlight not matched
 if(localStorage.getItem('sliderKey')){
     active.value = localStorage.getItem('sliderKey')

@@ -18,6 +18,9 @@
             </el-breadcrumb>
         </div>
         <div class="user">
+            <el-icon class="profile">
+                <User />
+            </el-icon>
             <el-dropdown>
                 <span class="el-dropdown-link">
                     {{loginStore.username}}
@@ -94,5 +97,8 @@ const openSlider = (flag) =>{
     position: absolute;
     right: 1rem;
     top:1rem ;
+}
+.profile{
+    margin-right: 1vw;
 }
 </style>
