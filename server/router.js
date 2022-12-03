@@ -4,7 +4,7 @@ const dbConn = require('./sqlConnect.js');
 const jwt = require('jsonwebtoken');
 const jwtSecret = require('./jwtSecret.js')
 const url = require('url');
-
+const lines = require('./data/chart.js')
 /**
  * login api
  */
@@ -35,5 +35,10 @@ router.post('/login',(req,res)=>{
         }
     })
 })
-
+router.get('/lines',(req,res)=>{
+    res.send({
+        status:200,
+        result:lines
+    })
+})
 module.exports = router;

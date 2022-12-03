@@ -38,7 +38,7 @@ const getLogoToggle = (data) =>{
     transition: 0.3s ease-in;
 }
 .views{
-    padding-left: 5vw;
+    padding-left: 1.05vw;
     height: auto;
 }
 </style>
