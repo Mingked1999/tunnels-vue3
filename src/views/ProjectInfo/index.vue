@@ -1,4 +1,16 @@
 <template>
+    <div class="search">
+        <span>Project Status</span>
+        <el-input v-model="keyword" class="searchBar" size="large" placeholder="Type Keyword Here">
+        </el-input>
+        <el-button class="btn" size="large" type="primary" @click="searchProject" plain>
+            Search
+        </el-button>
+        <el-button class="btn" size="large" type="primary" @click="" plain>
+            Add
+        </el-button>
+    </div>
+    <!--Project Table Start-->
     <el-table :data="projectList.projects" 
         :header-cell-style="(headerStyle)" style="width:100%;" scrollbar-always-on>
         <el-table-column prop="name" label="Name"  width="130"/>
@@ -17,7 +29,6 @@
                 </el-tag>
             </template>
         </el-table-column>
-       
         <el-table-column label="Operations" width="150">
             <template #default="scope">
                 <el-button size="small" @click="rowUpdate(scope.$index,scope.row)">
@@ -35,28 +46,46 @@
             </template>
         </el-table-column>
     </el-table>
+    <!--Project Table End-->
 </template>
 <script setup>
 import api from '@/api/index.js'
-import { onMounted,reactive } from 'vue'
+import { onMounted,reactive,ref } from 'vue'
 import {timeFormatter} from '@/utils/timeFormatter.js'
 
 const projectList = reactive({
     projects:[]
 })
+const keyword = ref("")
 const fetchProjects = (number) =>{
     api.getProjects({page:number}).then(res=>{
         //console.log(res.data)
         if(res.data.status == 200){
             projectList.projects = res.data.result
         }
-    }).then(err=>{
+    }).catch(err=>{
         console.log(err)
     })
 }
 onMounted(()=>{
     fetchProjects(1);
 })
+/**
+ * search project contains keyword in name, destination and remarks
+ */
+const searchProject = () =>{
+    //console.log(keyword.value)
+    api.searchProjects({keyword:keyword.value}).then(res=>{
+        if(res.data.status == 200){
+            //console.log(res.data)
+            projectList.projects = res.data.result
+        }else{
+            projectList.projects = []
+        }
+    }).catch(err=>{
+        console.log(err)
+    })
+}
 /**
  * according to status value return specific text
  * @param {*} status 
@@ -88,4 +117,17 @@ const rowDelete = (index,row) =>{
 }
 </script>
 <style scoped>
+.search{
+    margin-top: .7rem;
+    box-sizing: border-box;
+    padding: .7rem;
+    width: 100%;
+    background-color: aliceblue;
+}
+.search span{
+    font-weight: 700;
+}
+.search .searchBar{
+    width: 15vw;
+}
 </style>

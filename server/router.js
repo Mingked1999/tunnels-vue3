@@ -41,10 +41,34 @@ router.get('/lines',(req,res)=>{
         result:lines
     })
 })
+/**
+ * return all prject records
+ */
 router.get('/project/all',(req,res)=>{
     //query and pagination
     var page = url.parse(req.url,true).query.page || 1; //????
     const sql = 'select * from project order by id desc limit 15 offset ' + (page-1) * 15;
+    dbConn(sql,null,result=>{
+        if(result.length > 0){
+            res.send({
+                status:200,
+                result
+            })
+        }else{
+            res.send({
+                status:500,
+                message:'no records'
+            })
+        }
+    })
+})
+/**
+ * search project by keywords
+ */
+router.get("/project/search",(req,res)=>{
+    //receive params
+    const keyword = url.parse(req.url,true).query.keyword;
+    const sql = "SELECT * FROM project where concat(`name`,`destination`,`remark`) LIKE '%" + keyword + "%'";
     dbConn(sql,null,result=>{
         if(result.length > 0){
             res.send({

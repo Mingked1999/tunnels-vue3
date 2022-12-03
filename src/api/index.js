@@ -13,6 +13,11 @@ const api = {
             params
         })
     },
+    searchProjects(params){
+        return axios.get(base.baseRul + base.projectSearch,{
+            params
+        })
+    },
 }
 
 export default api
