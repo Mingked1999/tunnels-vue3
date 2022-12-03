@@ -17,8 +17,9 @@
             <span class="title">Procasting 9999</span>
         </div>
     </div>
-    <div class="chart" id="tunnel">
-    </div>
+    <div class="chart" id="tunnel"></div>
+    <div class="chart" id="radar"></div>
+    <div class="chart" id="pie"></div>
 </template>
 <script setup>
 import { getCurrentInstance,onMounted } from 'vue';
@@ -31,6 +32,8 @@ onMounted(()=>{
         if(res.data.status == 200){
             proxy.$chart("tunnel",res.data.result.lines)
             //loading chart when DOM rendered
+            proxy.$radar("radar")
+            proxy.$pie("pie")
         }
     }).catch(err=>{
         console.log(err)
@@ -79,4 +82,5 @@ onMounted(()=>{
     background-color: #ffffff;
     margin-left: .5vw;
 }
+
 </style>
