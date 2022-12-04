@@ -14,4 +14,13 @@ body,html,#app{
 .el-menu{
   border-right: 0; /* remove element menu right border */
 }
+.el-dialog__header{
+    background-color:#00005C ;
+    margin-right: 0 !important;
+}
+.el-dialog__header span{
+    color: #FBFACD;
+}
+
+
 </style>

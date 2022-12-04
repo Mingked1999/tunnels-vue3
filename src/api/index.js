@@ -18,6 +18,12 @@ const api = {
             params
         })
     },
+    ProjectNumber(){
+        return axios.get(base.baseRul + base.pageNumber)
+    },
+    AddProject(params){
+        return axios.post(base.baseRul + base.createProject,params)
+    }
 }
 
 export default api

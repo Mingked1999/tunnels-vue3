@@ -47,7 +47,7 @@ router.get('/lines',(req,res)=>{
 router.get('/project/all',(req,res)=>{
     //query and pagination
     var page = url.parse(req.url,true).query.page || 1; //????
-    const sql = 'select * from project order by id desc limit 15 offset ' + (page-1) * 15;
+    const sql = 'select * from project order by id desc limit 10 offset ' + (page-1) * 10;
     dbConn(sql,null,result=>{
         if(result.length > 0){
             res.send({
@@ -79,6 +79,56 @@ router.get("/project/search",(req,res)=>{
             res.send({
                 status:500,
                 message:'no records'
+            })
+        }
+    })
+})
+/**
+ * return total number of pages
+ */
+router.get('/project/page-number',(req,res)=>{
+    const sql = "SELECT count(*) FROM project";
+    dbConn(sql,null,result=>{
+        if(result.length > 0){
+            res.send({
+                status:200,
+                result
+            })
+        }else{
+            res.send({
+                status:500,
+                message:'no records'
+            })
+        }
+    })
+})
+/**
+ * Insert new Project to database
+ */
+router.post('/project/create',(req,res)=>{
+    const {name,series,costs,location,duration,startTime,endTime,quantity,status,remark } = req.body;
+    // var name = url.parse(req.url,true).query.name;
+    // var series = url.parse(req.url,true).query.series;
+    // var costs = url.parse(req.url,true).query.costs;
+    // var location = url.parse(req.url,true).query.location;
+    // var duration = url.parse(req.url,true).query.duration;
+    // var startTime = url.parse(req.url,true).query.startTime;
+    // var endTime = url.parse(req.url,true).query.endTime;
+    // var quantity = url.parse(req.url,true).query.quantity;
+    // var status = url.parse(req.url,true).query.status;
+    // var remark = url.parse(req.url,true).query.remark;
+    const sql = 'insert into project values(null,?,?,?,?,?,?,?,?,?,?)';
+    const details = [name,series,costs,location,duration,startTime,endTime,quantity,status,remark];
+    dbConn(sql,details,result=>{
+        if(result.affectedRows > 0){
+            res.send({
+                status:200,
+                message:'Project Created'
+            })
+        }else{
+            res.send({
+                status:500,
+                message:'Create Failed'
             })
         }
     })
