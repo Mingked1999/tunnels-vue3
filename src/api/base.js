@@ -9,6 +9,7 @@ const base = {
     projectSearch:'/project/search',
     pageNumber:'/project/page-number',
     createProject:'/project/create',
+    delProject:'/project/delete',
 }
 
 export default base;

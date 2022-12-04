@@ -155,7 +155,7 @@ const fetchProjects = (number) =>{
         
         if(res.data.status == 200){
             projectList.projects = res.data.result
-            console.log(res.data)
+            //console.log(res.data)
         }
     }).catch(err=>{
         console.log(err)
@@ -237,7 +237,39 @@ const rowUpdate = (index,row) =>{
  * allow user to delete a record
  */
 const rowDelete = (index,row) =>{
-    console.log(index,row)
+    ElMessageBox.confirm(
+    'Confirm to Delete this Record',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+    }
+    )
+    .then(() => {   //confirm
+        api.DelProject({id:row.id}).then(res=>{
+            if(res.data.status==200){
+                ElMessage({
+                    message: `Project ${projectTemp.name} Success Deleted`,
+                    type: 'success',
+                })
+                fetchProjects(); //reload project list
+            }else{
+                ElMessage({
+                    type: 'error',
+                    message: res.data.message
+                })
+            }
+        }).catch(err=>{
+            console.log(err)
+        })
+    })
+    .catch(() => { //cancel
+      ElMessage({
+        type: 'info',
+        message: 'Delete canceled',
+      })
+    })
 }
 /**
  * 

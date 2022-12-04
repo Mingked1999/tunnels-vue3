@@ -23,7 +23,10 @@ const api = {
     },
     AddProject(params){
         return axios.post(base.baseRul + base.createProject,params)
-    }
+    },
+    DelProject(params){
+        return axios.get(base.baseRul + base.delProject,{params})
+    },
 }
 
 export default api

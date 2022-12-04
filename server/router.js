@@ -123,4 +123,24 @@ router.post('/project/create',(req,res)=>{
         }
     })
 })
+/**
+ * delete project by Id
+ */
+router.get('/project/delete',(req,res)=>{
+    var id = url.parse(req.url,true).query.id;
+    var sql = 'DELETE FROM project WHERE id=?';
+    dbConn(sql,id,result=>{
+        if(result.affectedRows > 0){
+            res.send({
+                status:200,
+                message:'Project Deleted'
+            })
+        }else{
+            res.send({
+                status:500,
+                message:'Deletion Failed'
+            })
+        }
+    })
+})
 module.exports = router;
