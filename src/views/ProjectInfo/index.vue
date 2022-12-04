@@ -34,7 +34,7 @@
         </el-table-column>
         <el-table-column label="Operations" width="150">
             <template #default="scope">
-                <el-button size="small" @click="rowUpdate(scope.$index,scope.row)">
+                <el-button size="small" @click="rowEdit(scope.$index,scope.row)">
                     Edit
                 </el-button>
                 <el-button size="small" @click="rowDelete(scope.$index,scope.row)" type="danger">
@@ -108,6 +108,59 @@
         </template>
     </el-dialog>
     <!--Dialog/Modal end-->
+
+    <!--Dialog Editing Start-->
+    <el-dialog v-model="editorVisible" title="EDITING" width="60%" center destroy-on-close>
+        <el-form inline :model="projectEditing">
+            <el-form-item label="NAME">
+                <el-input v-model="projectEditing.name"/>
+            </el-form-item>
+            <el-form-item label="SERIES">
+                <el-input v-model="projectEditing.series"/>
+            </el-form-item>
+            <el-form-item label="COSTS">
+                <el-input-number v-model="projectEditing.costs"/>
+            </el-form-item>
+            <el-form-item label="LOCATION">
+                <el-input v-model="projectEditing.location"/>
+            </el-form-item>
+            <el-form-item label="Duration">
+                <el-input-number v-model="projectEditing.duration"/>
+            </el-form-item>
+            <el-form-item label="StartTime">
+                <!-- <el-input v-model="projectTemp.startTime" placeholder="Start Time"/> -->
+                <el-date-picker v-model="projectEditing.startTime" type="date" value-format="x"/>
+            </el-form-item>
+            <el-form-item label="EndTime">
+                <!-- <el-input v-model="projectTemp.endTime" placeholder="End Time"/> -->
+                <el-date-picker v-model="projectEditing.endTime" type="date" value-format="x"/>
+            </el-form-item>
+            <el-form-item label="SITES">
+                <el-input-number v-model="projectEditing.quantity"/>
+            </el-form-item>
+            <el-form-item label="STATUS">
+                <el-select v-model="projectEditing.status" size="large">
+                    <el-option v-for="item in isFinished" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
+                <!-- <el-input v-model="projectTemp.status" placeholder="Is Finished ?"/> -->
+            </el-form-item>
+            <el-form-item label="REMARKS">
+                <!-- <el-input v-model="projectTemp.remark" placeholder="Some Notes"/> -->
+                <TinyMCE @writeRemark="remarkHandle" :options="options" 
+                    :editorId="editorId" :remark="projectEditing.remark"/>
+            </el-form-item>
+           
+        </el-form>
+        <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="editorVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="updateConfirm">
+                    Confirm
+                </el-button>
+            </span>
+        </template>
+    </el-dialog>
+    <!--Dialog Editing End-->
 </template>
 <script setup>
 import api from '@/api/index.js'
@@ -130,6 +183,19 @@ let projectTemp = reactive({
     status:0,
     remark:''
 }) //temp container of new project details
+let projectEditing = reactive({
+    name:'',
+    series:'',
+    costs:0,
+    location:'',
+    duration:0,
+    startTime:'',
+    endTime:'',
+    quantity:0,
+    status:0,
+    remark:''
+})
+const editorId = ref(0)
 const isFinished = [
   {
     value: 0,
@@ -142,6 +208,7 @@ const isFinished = [
 ]
 const keyword = ref("") //project search keyword
 const createVisible = ref(false) //control project creation dialog visible
+const editorVisible = ref(false) //control project editor dialog visible
 const options = {
     width:'100%',
     height:'30vh'
@@ -230,8 +297,33 @@ const headerStyle = () =>{
 /**
  * allow user to update new details of a row
  */
-const rowUpdate = (index,row) =>{
-    //console.log(index,row)
+const rowEdit = (index,row) =>{
+    editorVisible.value = true //dialod visible
+    editorId.value = row.id
+    api.PreProject({id:row.id}).then(res=>{
+        //console.log(res.data)
+        if(res.data.status==200){
+            //assign value to editing dialog
+            projectEditing.name = res.data.result.name
+            projectEditing.series = res.data.result.series
+            projectEditing.costs = res.data.result.costs
+            projectEditing.location = res.data.result.location
+            projectEditing.duration = res.data.result.duration
+            projectEditing.startTime = Number(res.data.result.startTime)
+            projectEditing.endTime = Number(res.data.result.endTime)
+            projectEditing.quantity = res.data.result.quantity
+            projectEditing.status = res.data.result.status
+            projectEditing.remark = res.data.result.remark
+        }
+    }).catch(err=>{
+        console.log(err)
+    })
+}
+/**
+ * confirm to update a row
+ */
+const updateConfirm = () =>{
+    
 }
 /**
  * allow user to delete a record
@@ -302,7 +394,7 @@ const submitProject = () =>{
 /**
  * editing remarks
  */
- const remarkHandle = (current) =>{
+const remarkHandle = (current) =>{
     console.log(current)
     projectTemp.remark = current
  }

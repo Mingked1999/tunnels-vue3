@@ -41,3 +41,9 @@
 //routing to Layout.vue
 //Layout has children of content/page switching
 ```
+
+## Record Editing Implementation Logics
+
+- 1. take data from table to dialog
+- 2. network request new data and assign to the current dialog, pre-update
+

@@ -27,6 +27,9 @@ const api = {
     DelProject(params){
         return axios.get(base.baseRul + base.delProject,{params})
     },
+    PreProject(params){
+        return axios.get(base.baseRul + base.preProject,{params})
+    },
 }
 
 export default api

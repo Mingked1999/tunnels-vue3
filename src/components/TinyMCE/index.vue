@@ -25,7 +25,7 @@ import 'tinymce/plugins/save' // 保存
 import "tinymce/plugins/searchreplace"; //查询替换
 import "tinymce/plugins/pagebreak"; //分页
 import "tinymce/plugins/insertdatetime"; //时间插入
-
+import api from '@/api/index.js'
 import { reactive, ref, watch, onMounted } from "vue"
 
 const textContent = ref("")
@@ -38,7 +38,15 @@ const props = defineProps({
         type:Object,
         default:()=>{}
     },
-  plugins: {
+    remark:{
+        type:String,
+        default:''
+    },
+    editorId:{
+        type:[String,Number],
+        default:0
+    },
+    plugins: {
     type: [String, Array],
     default: 'lists image media table wordcount save preview' //list order
    },
@@ -82,6 +90,13 @@ watch(textContent,(newValue,oldValue) =>{
 onMounted(()=>{
   //init tinymce
   tinymce.init({})
+  api.PreProject({id:props.editorId}).then(res=>{
+    if(res.data.status==200){
+        textContent.value = res.data.result.remark
+    }
+  }).catch(err=>{
+    console.log(err)
+  })
 })
 
 </script>

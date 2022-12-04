@@ -143,4 +143,24 @@ router.get('/project/delete',(req,res)=>{
         }
     })
 })
+/**
+ * update project by id
+ */
+router.get('/project/update/pre',(req,res)=>{
+    const id = url.parse(req.url,true).query.id;
+    const sql = 'select * from project where id=?';
+    dbConn(sql,[id],result=>{
+        if(result.length > 0){
+            res.send({
+                status:200,
+                result:result[0]
+            })
+        }else{
+            res.send({
+                status:500,
+                message:'no records'
+            })
+        }
+    })
+})
 module.exports = router;

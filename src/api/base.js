@@ -10,6 +10,7 @@ const base = {
     pageNumber:'/project/page-number',
     createProject:'/project/create',
     delProject:'/project/delete',
+    preProject:'/project/update/pre',
 }
 
 export default base;
