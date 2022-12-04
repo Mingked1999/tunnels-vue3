@@ -16,6 +16,8 @@
 - element-plus: npm install element-plus --save
 - element-plus icon: npm install @element-plus/icons-vue
 - On-demand Import: npm install -D unplugin-vue-components unplugin-auto-import
+- npm install tinymce@6.2.0 --save
+- npm install @tinymce/tinymce-vue@5.0.0 --save
 
 ## MODULE USED IN THIS PROJECT server
 

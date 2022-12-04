@@ -93,7 +93,8 @@
                 <!-- <el-input v-model="projectTemp.status" placeholder="Is Finished ?"/> -->
             </el-form-item>
             <el-form-item label="REMARKS">
-                <el-input v-model="projectTemp.remark" placeholder="Some Notes"/>
+                <!-- <el-input v-model="projectTemp.remark" placeholder="Some Notes"/> -->
+                <TinyMCE @writeRemark="remarkHandle" :options="options"/>
             </el-form-item>
            
         </el-form>
@@ -112,6 +113,7 @@
 import api from '@/api/index.js'
 import { onMounted,reactive,ref } from 'vue'
 import {timeFormatter} from '@/utils/timeFormatter.js'
+import TinyMCE from '@/components/TinyMCE/index.vue'
 
 let projectList = reactive({ //intiative all project lists
     projects:[]
@@ -140,16 +142,20 @@ const isFinished = [
 ]
 const keyword = ref("") //project search keyword
 const createVisible = ref(false) //control project creation dialog visible
-
+const options = {
+    width:'100%',
+    height:'30vh'
+}
 /**
  * fetch projects in spefic pagination
  * @param {*} number: page number
  */
 const fetchProjects = (number) =>{
     api.getProjects({page:number}).then(res=>{
-        //console.log(res.data)
+        
         if(res.data.status == 200){
             projectList.projects = res.data.result
+            console.log(res.data)
         }
     }).catch(err=>{
         console.log(err)
@@ -164,7 +170,7 @@ onMounted(()=>{
 /**
  * total project number
  */
-const total = ref(0) //the number of projects
+let total = ref(0) //the number of projects
 /**
  * first loading total record number
  */
@@ -225,7 +231,7 @@ const headerStyle = () =>{
  * allow user to update new details of a row
  */
 const rowUpdate = (index,row) =>{
-    console.log(index,row)
+    //console.log(index,row)
 }
 /**
  * allow user to delete a record
@@ -261,6 +267,13 @@ const submitProject = () =>{
     })
 
 }
+/**
+ * editing remarks
+ */
+ const remarkHandle = (current) =>{
+    console.log(current)
+    projectTemp.remark = current
+ }
 </script>
 <style scoped>
 .search{

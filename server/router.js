@@ -68,7 +68,7 @@ router.get('/project/all',(req,res)=>{
 router.get("/project/search",(req,res)=>{
     //receive params
     const keyword = url.parse(req.url,true).query.keyword;
-    const sql = "SELECT * FROM project where concat(`name`,`destination`,`remark`) LIKE '%" + keyword + "%'";
+    const sql = "SELECT * FROM project where concat(`name`,`location`,`remark`) LIKE '%" + keyword + "%'";
     dbConn(sql,null,result=>{
         if(result.length > 0){
             res.send({
@@ -107,16 +107,6 @@ router.get('/project/page-number',(req,res)=>{
  */
 router.post('/project/create',(req,res)=>{
     const {name,series,costs,location,duration,startTime,endTime,quantity,status,remark } = req.body;
-    // var name = url.parse(req.url,true).query.name;
-    // var series = url.parse(req.url,true).query.series;
-    // var costs = url.parse(req.url,true).query.costs;
-    // var location = url.parse(req.url,true).query.location;
-    // var duration = url.parse(req.url,true).query.duration;
-    // var startTime = url.parse(req.url,true).query.startTime;
-    // var endTime = url.parse(req.url,true).query.endTime;
-    // var quantity = url.parse(req.url,true).query.quantity;
-    // var status = url.parse(req.url,true).query.status;
-    // var remark = url.parse(req.url,true).query.remark;
     const sql = 'insert into project values(null,?,?,?,?,?,?,?,?,?,?)';
     const details = [name,series,costs,location,duration,startTime,endTime,quantity,status,remark];
     dbConn(sql,details,result=>{
