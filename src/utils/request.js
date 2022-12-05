@@ -34,9 +34,10 @@ const instance = axios.create({
  
 instance.interceptors.request.use(
     config =>{
-        if(config.method === 'post'){
+        if(config.method === 'post' || config.method === 'put'){
             config.headers =  {
                 'Content-type': 'application/x-www-form-urlencoded',
+                //config.data = queryString.stringify(config.data)
             }
         }
         return config

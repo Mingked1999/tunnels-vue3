@@ -11,6 +11,7 @@ const base = {
     createProject:'/project/create',
     delProject:'/project/delete',
     preProject:'/project/update/pre',
+    updateProject:'/project/update/'
 }
 
 export default base;

@@ -30,6 +30,10 @@ const api = {
     PreProject(params){
         return axios.get(base.baseRul + base.preProject,{params})
     },
+    updateProject(id,params){
+        return axios.put(base.baseRul + base.updateProject + id, params )
+    },
+    
 }
 
 export default api

@@ -163,4 +163,27 @@ router.get('/project/update/pre',(req,res)=>{
         }
     })
 })
+/**
+ * restFul API
+ */
+router.put(("/project/update/:id"),(req,res)=>{
+    const id = req.params.id;
+    const {name,series,costs,location,duration,startTime,endTime,quantity,status,remark } = req.body;
+    const sql = 'update project set name=?,series=?,costs=?,location=?,duration=?,startTime=?,endTime=?,quantity=?,status=?,remark=? where id=?';
+    const details = [name,series,costs,location,duration,startTime,endTime,quantity,status,remark,id];
+    dbConn(sql,details,result=>{
+        if(result.affectedRows > 0){
+            res.send({
+                status:200,
+                message:'Project updated'
+            })
+        }else{
+            res.send({
+                status:500,
+                message:'Operation Failed'
+            })
+        }
+    })
+    
+})
 module.exports = router;

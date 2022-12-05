@@ -146,7 +146,7 @@
             </el-form-item>
             <el-form-item label="REMARKS">
                 <!-- <el-input v-model="projectTemp.remark" placeholder="Some Notes"/> -->
-                <TinyMCE @writeRemark="remarkHandle" :options="options" 
+                <TinyMCE @writeRemark="remarkEdit" :options="options" 
                     :editorId="editorId" :remark="projectEditing.remark"/>
             </el-form-item>
            
@@ -320,10 +320,48 @@ const rowEdit = (index,row) =>{
     })
 }
 /**
+ * watch remark value and assign new value
+ */
+ const remarkHandle = (current) =>{
+    //console.log(current)
+    projectTemp.remark = current
+ }
+/**
+ * renew remark value in editing dialog
+ */
+const remarkEdit = (data) =>{
+    projectEditing.remark = data
+}
+/**
  * confirm to update a row
  */
 const updateConfirm = () =>{
-    
+    api.updateProject(editorId.value,{
+        name : projectEditing.name,
+        series: projectEditing.series,
+        costs: projectEditing.costs,
+        location: projectEditing.location,
+        duration: projectEditing.duration,
+        startTime: projectEditing.startTime,
+        endTime: projectEditing.endTime,
+        quantity : projectEditing.quantity,
+        status : projectEditing.status,
+        remark : projectEditing.remark,
+    }).then(res=>{
+        if(res.data.status == 200){
+            editorVisible.value = false //close window
+            ElMessage({
+                    message: res.data.message,
+                    type: 'success',
+                })
+            fetchProjects(); //reload project list
+        }else{
+            ElMessage({
+                    type: 'error',
+                    message: res.data.message
+                })
+        }
+    })
 }
 /**
  * allow user to delete a record
@@ -391,13 +429,7 @@ const submitProject = () =>{
     })
 
 }
-/**
- * editing remarks
- */
-const remarkHandle = (current) =>{
-    console.log(current)
-    projectTemp.remark = current
- }
+
 </script>
 <style scoped>
 .search{
