@@ -60,11 +60,12 @@ const props = defineProps({
 const init = reactive({
   width: props.options.width,
   height: props.options.height,
-  skin_url: '/tinymce/skins/ui/oxide',  //under public folder
+  skin_url:'node_modules/tinymce/skins/ui/oxide',
+  // skin_url: '/tinymce/skins/ui/oxide',  //under public folder
   // skin_url: 'tinymce/skins/ui/oxide-dark',//dark theme
   plugins: props.plugins,
   toolbar: props.toolbar,
-  content_css: '/tinymce/skins/content/default/content.css',
+  content_css: 'node_modules/tinymce/skins/content/default/content.css',
   branding: false,
   menubar: false, // hide menubar
   statusbar: true,  // hide status bar
