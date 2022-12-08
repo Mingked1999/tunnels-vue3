@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- 主机： 127.0.0.1
--- 生成日期： 2022-11-11 18:10:51
--- 服务器版本： 10.4.22-MariaDB
--- PHP 版本： 8.1.1
+-- Host: 127.0.0.1
+-- Generation Time: Dec 08, 2022 at 05:03 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,63 +18,42 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `vue_itbaizhan`
+-- Database: `tunnels_vue3`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `project`
+-- Table structure for table `project`
 --
 
 CREATE TABLE `project` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `number` text NOT NULL,
-  `money` text NOT NULL,
-  `address` text NOT NULL,
-  `duration` text NOT NULL,
+  `series` text NOT NULL,
+  `costs` double NOT NULL,
+  `location` text NOT NULL,
+  `duration` double NOT NULL,
   `startTime` text NOT NULL,
   `endTime` text NOT NULL,
-  `quantity` text NOT NULL,
-  `status` text NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `remark` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `project`
+-- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`id`, `name`, `number`, `money`, `address`, `duration`, `startTime`, `endTime`, `quantity`, `status`, `remark`) VALUES
-(1, '晋阳(晋冀界)至榆次', 'gbc', '3200000', '榆次', '12', '1643644800000', '1706716800000', '1', '1', '正在进行中的隧道挖掘'),
-(2, '大广高速(北京)路段', 'cfbj', '900000', '北京', '9', '1654012800000', '1685548800000', '5', '0', '可挖掘隧道'),
-(3, '京哈高速(北京)路段', 'bjh', '5600000', '北京', '15', '1664899200000', '1699977600000', '5', '1', '京哈高速路段隧道维修较为困难'),
-(4, 'G2京沪高速', 'G2', '1000000', '上海', '45', '1666195200000', '1729094400000', '30', '0', '北京－唐山－秦皇岛－锦州－沈阳－四平－长春－哈尔滨，1280公里'),
-(5, 'G3京台高速', 'G3', '300000', '台湾', '45', '1665676800000', '1729094400000', '30', '1', '北京－天津－沧州－德州－济南－泰安－曲阜－徐州－蚌埠－合肥－铜陵－黄山－衢州－南平－福州－台北，2030公里'),
-(6, 'G4京港澳高速', 'G4', '6000000', '香港', '43', '1665331200000', '1760630400000', '50', '1', '北京－保定－石家庄－邯郸－新乡－郑州－漯河－信阳－武汉－咸宁－岳阳－长沙－株洲－阳－郴州－韶关－广州－深圳－香港（口岸），2285公里'),
-(7, 'G4W广澳高速', 'G4W', '6000000', '香港', '43', '1665331200000', '1760630400000', '50', '1', '广州—澳门广州－中山－珠海－澳门（口岸）'),
-(8, 'G5京昆高速', 'G5', '6000000', '北京', '43', '1665331200000', '1760630400000', '50', '1', '北京－保定－石家庄－太原－临汾－西安－汉中－广元－绵阳－成都－雅安－西昌－攀枝花－昆明，2865公里'),
-(9, 'G6京藏高速', 'G6', '6000000', '西藏', '43', '1665331200000', '1760630400000', '50', '1', '北京－张家口－集宁－呼和浩特－包头－临河－乌海－银川－中宁－白银－兰州－西宁－格尔木－拉萨，3710公里'),
-(10, 'G7京新高速', 'G7', '6000000', '新疆', '43', '1665331200000', '1760630400000', '50', '1', '北京－张家口－集宁－呼和浩特－包头－临河－额济纳旗－哈密－吐鲁番－乌鲁木齐，2540公里'),
-(11, 'G11鹤大高速', 'G11', '6000000', '鹤岗', '43', '1665331200000', '1760630400000', '50', '1', '鹤岗－佳木斯－鸡西－牡丹江－敦化－通化－丹东－大连，1390公里'),
-(12, 'G1111鹤哈高速', 'G1111', '6000000', '鹤岗', '43', '1665331200000', '1760630400000', '50', '1', '鹤岗－伊春－绥化－哈尔滨'),
-(13, 'G111集双高速', 'G111', '6000000', '集安（口岸）', '43', '1665331200000', '1760630400000', '50', '1', '集安（口岸）－通化－梅河口－辽源－四平－双辽'),
-(14, 'G1113丹阜高速', 'G1113', '6000000', '丹东', '43', '1665331200000', '1760630400000', '50', '1', '丹东（口岸）－本溪－沈阳－新民－阜新'),
-(15, 'G15沈海高速', 'G15', '6000000', '沈阳', '43', '1665331200000', '1760630400000', '50', '1', '沈阳－辽阳－鞍山－海城－大连－烟台－青岛－日照－连云港－盐城－南通－常熟－太仓－上海－宁波－台州－温州－宁德－福州－泉州－厦门－汕头－汕尾－深圳－广州－佛山－开平－阳江－茂名－湛江－海口，3710公里'),
-(16, 'G15W常台高速', 'G15W', '6000000', '台州', '43', '1665331200000', '1760630400000', '50', '1', '常熟－苏州－嘉兴－绍兴－台州'),
-(17, 'G1511日兰高速', 'G1511', '6000000', '兰考', '43', '1665331200000', '1760630400000', '50', '1', '日照－曲阜－济宁－菏泽－兰考'),
-(18, 'G1512甬金高速', 'G1512', '6000000', '宁波', '43', '1665331200000', '1760630400000', '50', '1', '宁波－嵊州－金华'),
-(19, 'G1513温丽高速', 'G1513', '6000000', '温州', '43', '1665331200000', '1760630400000', '50', '1', '温州－丽水'),
-(20, 'G25长深高速', 'G25', '6000000', '长春', '43', '1665331200000', '1760630400000', '50', '1', '长春－双辽－阜新－朝阳－承德－唐山－天津－黄骅－滨州－青州－临沂－连云港－淮安－南京－溧阳－宜兴－湖州－杭州－金华－丽水－南平－三明－龙岩－梅州－河源－惠州－深圳，3580公里'),
-(21, 'G2511新鲁高速', 'G2511', '6000000', '新民', '43', '1665331200000', '1760630400000', '50', '1', '新民－彰武－通辽－鲁北'),
-(22, 'G35济广高速', 'G35', '6000000', '济南', '43', '1665331200000', '1760630400000', '50', '1', '济南－菏泽－商丘－阜阳－六安－安庆－景德镇－鹰潭－南城－瑞金－河源－广州，2110公里'),
-(23, 'G45大广高速', 'G45', '6000000', '大庆', '43', '1665331200000', '1760630400000', '50', '1', '大庆－松原－双辽－通辽－赤峰－承德－北京－霸州－衡水－濮阳－开封－周口－麻城－黄石－吉安－赣州－龙南－连平－广州，3550公里'),
-(24, 'G55二广高速', 'G55', '6000000', '二连浩特', '43', '1665331200000', '1760630400000', '50', '1', '<p>二连浩特－集宁－大同－太原－长治－晋城－洛阳－平顶山－南阳－襄樊－荆州－常德－娄底－邵阳－永州－连州－广州，2685公里</p>');
+INSERT INTO `project` (`id`, `name`, `series`, `costs`, `location`, `duration`, `startTime`, `endTime`, `quantity`, `status`, `remark`) VALUES
+(49, 'Hobart Western Bypass Feasibility', 'GHD19', 3300000000, 'Tasmaina', 12, '1551358800000', '1598882400000', 80, 0, '<p>&ndash; Tunnel Bypass with CBD Connections</p>'),
+(50, 'Germany Parattah', 'TBM08', 13200000, 'Grmany', 17.7, '1225458000000', '1622469600000', 41, 1, '<p>The 2.2 kilometre (in length) intake tunnel will draw seawater to the plant, where it will undergo Reverse Osmosis (RO)</p>'),
+(51, 'Testing Update', 'TU01', 1234, 'PC_Home', 212, '1670158800000', '1670245200000', 10, 0, '<p>Update Editing implemented</p>');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tunnel`
+-- Table structure for table `tunnel`
 --
 
 CREATE TABLE `tunnel` (
@@ -84,7 +63,7 @@ CREATE TABLE `tunnel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `tunnel`
+-- Dumping data for table `tunnel`
 --
 
 INSERT INTO `tunnel` (`id`, `name`, `cid`) VALUES
@@ -95,7 +74,7 @@ INSERT INTO `tunnel` (`id`, `name`, `cid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tunnelchild`
+-- Table structure for table `tunnelchild`
 --
 
 CREATE TABLE `tunnelchild` (
@@ -106,7 +85,7 @@ CREATE TABLE `tunnelchild` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `tunnelchild`
+-- Dumping data for table `tunnelchild`
 --
 
 INSERT INTO `tunnelchild` (`id`, `cid`, `name`, `content`) VALUES
@@ -121,7 +100,7 @@ INSERT INTO `tunnelchild` (`id`, `cid`, `name`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tunnelcontent`
+-- Table structure for table `tunnelcontent`
 --
 
 CREATE TABLE `tunnelcontent` (
@@ -134,7 +113,7 @@ CREATE TABLE `tunnelcontent` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `tunnelcontent`
+-- Dumping data for table `tunnelcontent`
 --
 
 INSERT INTO `tunnelcontent` (`id`, `tunnelname`, `imagename`, `num`, `url`, `content`) VALUES
@@ -144,7 +123,7 @@ INSERT INTO `tunnelcontent` (`id`, `tunnelname`, `imagename`, `num`, `url`, `con
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -156,79 +135,77 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `permission`, `phone`) VALUES
-(1, 'admin', '123456', 'admin', '18888888888'),
-(2, 'hello', '123456', 'vip', '15555555555'),
-(3, 'demo', '123456', 'vip', '13337155551'),
-(4, 'test', '111111', 'vip', '17777777777');
+(1, 'mingked', '123456', 'admin', '88888888'),
+(2, 'utasDemo', '123456', 'worker', '1234567');
 
 --
--- 转储表的索引
+-- Indexes for dumped tables
 --
 
 --
--- 表的索引 `project`
+-- Indexes for table `project`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `tunnel`
+-- Indexes for table `tunnel`
 --
 ALTER TABLE `tunnel`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `tunnelchild`
+-- Indexes for table `tunnelchild`
 --
 ALTER TABLE `tunnelchild`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `tunnelcontent`
+-- Indexes for table `tunnelcontent`
 --
 ALTER TABLE `tunnelcontent`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `project`
+-- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- 使用表AUTO_INCREMENT `tunnel`
+-- AUTO_INCREMENT for table `tunnel`
 --
 ALTER TABLE `tunnel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- 使用表AUTO_INCREMENT `tunnelchild`
+-- AUTO_INCREMENT for table `tunnelchild`
 --
 ALTER TABLE `tunnelchild`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- 使用表AUTO_INCREMENT `tunnelcontent`
+-- AUTO_INCREMENT for table `tunnelcontent`
 --
 ALTER TABLE `tunnelcontent`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- 使用表AUTO_INCREMENT `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
